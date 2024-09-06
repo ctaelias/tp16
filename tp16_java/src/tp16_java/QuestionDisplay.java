@@ -32,11 +32,18 @@ public class QuestionDisplay extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(0, 1));
 
-        // Componentes
+        // Inicialización de componentes
         titleLabel = new JLabel();
         stimulusLabel = new JLabel();
         promptArea = new JTextArea();
         promptArea.setEditable(false);
+
+        // Añadir componentes al contenedor
+        add(titleLabel);
+        add(stimulusLabel);
+        add(promptArea);
+
+        // Inicialización de botones de opción
         choiceButtons = new JRadioButton[4];
         ButtonGroup buttonGroup = new ButtonGroup();
         for (int i = 0; i < choiceButtons.length; i++) {
@@ -44,6 +51,8 @@ public class QuestionDisplay extends JFrame {
             buttonGroup.add(choiceButtons[i]);
             add(choiceButtons[i]);
         }
+
+        // Botón para pasar a la siguiente pregunta
         nextButton = new JButton("Siguiente");
         nextButton.addActionListener(new ActionListener() {
             @Override
@@ -54,6 +63,7 @@ public class QuestionDisplay extends JFrame {
         });
         add(nextButton);
 
+        // Inicializar y añadir el temporizador
         timerLabel = new JLabel();
         add(timerLabel);
 
@@ -71,12 +81,27 @@ public class QuestionDisplay extends JFrame {
             stimulusLabel.setText("Stimulus: " + q.getStimulus());
             promptArea.setText(q.getPrompt());
 
-            for (int i = 0; i < q.getChoices().size(); i++) {
-                Question.Choice choice = q.getChoices().get(i);
-                choiceButtons[i].setText(choice.getContent());
-                choiceButtons[i].setActionCommand(choice.getId());
-                choiceButtons[i].setSelected(false); // Deseleccionar opciones
+            // Verificar el tamaño de choices y asegurarse de que no haya más opciones que botones
+            if (q.getChoices().size() > choiceButtons.length) {
+                throw new IllegalStateException("Más opciones que botones de elección disponibles");
             }
+
+            // Limpiar y actualizar los botones de opción
+            for (int i = 0; i < choiceButtons.length; i++) {
+                if (i < q.getChoices().size()) {
+                    Question.Choice choice = q.getChoices().get(i);
+                    choiceButtons[i].setText(choice.getContent());
+                    choiceButtons[i].setActionCommand(choice.getId());
+                } else {
+                    choiceButtons[i].setText(""); // Limpiar botones no utilizados
+                }
+            }
+
+            // Deseleccionar todos los botones
+            for (JRadioButton button : choiceButtons) {
+                button.setSelected(false);
+            }
+
             currentQuestionIndex++;
         } else {
             endQuiz();
@@ -87,7 +112,7 @@ public class QuestionDisplay extends JFrame {
         if (currentQuestionIndex > 0) {
             Question q = questions.get(currentQuestionIndex - 1);
             String selectedChoiceId = getSelectedChoiceId();
-            if (q.getAnswers().stream().anyMatch(answer -> answer.contains(selectedChoiceId))) {
+            if (selectedChoiceId != null && q.getAnswers().stream().anyMatch(answer -> answer.contains(selectedChoiceId))) {
                 score += q.getPoints(); // Aumentar puntaje por respuesta correcta
             }
         }

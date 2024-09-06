@@ -1,6 +1,6 @@
 [
   {
-    "title": "Java Basics",
+    "title": "Pregunta java",
     "category": "MCQ",
     "stimulus": "Fundamental Concepts",
     "prompt": "¿Qué tipo de lenguaje es Java?",
@@ -26,7 +26,7 @@
     "answers": [ [ "b" ] ]
   },
   {
-    "title": "Java Syntax",
+    "title": "Pregunta java ",
     "category": "MCQ",
     "stimulus": "Syntax Rules",
     "prompt": "¿Cómo se declara una variable de tipo entero en Java?",
@@ -52,7 +52,7 @@
     "answers": [ [ "a"] ]
   },
   {
-    "title": "Java OOP",
+    "title": "Pregunta Java ",
     "category": "MCQ",
     "stimulus": "Object-Oriented Programming",
     "prompt": "¿Qué es la encapsulación en Java?",
@@ -78,7 +78,7 @@
     "answers": [ [ "c" ] ]
   },
   {
-    "title": "Java Inheritance",
+    "title": "Pregunta Java ",
     "category": "MCQ",
     "stimulus": "Inheritance Concept",
     "prompt": "¿Cómo se declara una clase que hereda de otra en Java?",
@@ -104,7 +104,7 @@
     "answers": [ [ "a" ] ]
   },
   {
-    "title": "Java Interfaces",
+    "title": "Pregunta Java ",
     "category": "MCQ",
     "stimulus": "Interface Implementation",
     "prompt": "¿Cómo se define una interfaz en Java?",
@@ -130,7 +130,7 @@
     "answers": [ [ "a" ] ]
   },
   {
-    "title": "Java Exceptions",
+    "title": "Preguna Java ",
     "category": "MCQ",
     "stimulus": "Exception Handling",
     "prompt": "¿Cómo se maneja una excepción en Java?",
